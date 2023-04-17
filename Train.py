@@ -15,7 +15,6 @@ import torch.nn as nn
 from sklearn.preprocessing import MinMaxScaler
 import torch.optim as optim
 from sklearn.model_selection import train_test_split
-import Model
 from trainer import Trainer
 import dataloader
 
