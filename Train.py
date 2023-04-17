@@ -27,7 +27,7 @@ trainloader = DataLoader(datasets, batch_size = opt.batch_size, sampler = split[
 testloader =DataLoader(datasets, batch_size = 1, sampler = split[1], num_workers = opt.nb_workers )
 
 criterion = nn.BCEWithLogitsLoss()
-model = Model.Unet()
+model = Model.UNet()
 # Assuming your U-Net model is called `model`
 optimizer = optim.Adam(model.parameters(), lr=opt.lr)
 
