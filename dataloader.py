@@ -18,8 +18,8 @@ class Datasets(Dataset):
         if torch.is_tensor(idx):
             idx = idx.tolist()
         
-        image = io.imread(os.path.join(self.image_dir,self.imagename[idx]) # Loading Image
-        label = io.imread(os.path.join(self.label_dir,self.imagename[idx])
+        image = io.imread(os.path.join(self.image_dir,self.imagename[idx])) # Loading Image
+        label = io.imread(os.path.join(self.label_dir,self.imagename[idx]))
         if self.upsample == True or 'lr' in self.imgname:
             image = transform.rescale(image,2)
             image = (image>0.5)*255
