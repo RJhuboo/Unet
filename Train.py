@@ -1,21 +1,13 @@
 import torch
 import os
 import numpy as np
-import pandas as pd
-from matplotlib import pyplot as plt
 import argparse
-from sklearn.model_selection import KFold
 from torch.utils.data import Dataset, DataLoader
 import random
 import Model
-import pickle
-from sklearn.preprocessing import StandardScaler
 import torch.nn.functional as F
 import torch.nn as nn
-from sklearn.preprocessing import MinMaxScaler
-import torch.optim as optim
 from sklearn.model_selection import train_test_split
-from trainer import Trainer
 import dataloader
 
 parser = argparse.ArgumentParser()
@@ -28,6 +20,7 @@ opt = parser.parse_args()
 
 NB_DATA = 4073
 index = range(NB_DATA)
+split = train_test_split(index,test_size=1000,shuffle=False)
 datasets = dataloader.Datasets(opt.image_dir,opt.label_dir,opt) # Create dataset
 trainloader = DataLoader(datasets, batch_size = opt.batch_size, sampler = split[0], num_workers = opt.nb_workers )
 testloader =DataLoader(datasets, batch_size = 1, sampler = split[1], num_workers = opt.nb_workers )
