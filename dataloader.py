@@ -3,6 +3,7 @@ import os
 import numpy as np
 from skimage import io
 from skimage.color import rgb2gray
+from torch.utils.data import Dataset, DataLoader
 
 class Datasets(Dataset):
     def __init__(self,image_dir, label_dir, opt):
