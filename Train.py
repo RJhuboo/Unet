@@ -45,17 +45,22 @@ def iou_metric(outputs, targets, threshold=0.5):
 test_metric = []
 
 for epoch in range(opt.nb_epochs):
-  for i, data in enumerate(trainloader,0):
-    labels, inputs = data['label'],data['image']
-    outputs = model(inputs)
-    loss = criterion(outputs, labels)
+    for i, data in enumerate(trainloader,0):
+        labels, inputs = data['label'],data['image']
+        inputs = inputs.reshape(inputs.size(0),1,512,512)
+        labels = labels.reshape(labels.size(0),1,512,512)
+        outputs = model(inputs)
+        loss = criterion(outputs, labels)
 
-    # Backpropagation and optimizer step
-    loss.backward()
-    optimizer.step()
-  with torch.no_grad():
-    for i, data in enumerate(testloader,0):
-      outputs=model(inputs)
-      metric = iou_metric(outputs,labels)
-    test_metric.append(metric)
-    print("Epoch",epoch,": Metric=",mean(test_metric))
+        # Backpropagation and optimizer step
+        loss.backward()
+        optimizer.step()
+    with torch.no_grad():
+        for i, data in enumerate(testloader,0):
+            labels,inputs = data['label'],data['image']
+            inputs = inputs.reshape(inputs.size(0),1,512,512)
+            labels = labels.reshape(labels.size(0),1,512,512)
+            outputs=model(inputs)
+            metric = iou_metric(outputs,labels)
+            test_metric.append(metric)
+        print("Epoch",epoch,": Metric=",mean(test_metric))
