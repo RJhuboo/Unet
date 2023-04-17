@@ -47,12 +47,14 @@ def iou_metric(outputs, targets, threshold=0.5):
     union = (outputs + targets).sum() - intersection
     iou = (intersection + 1e-7) / (union + 1e-7)
     return iou
-  
+
+test_metric = []
+
 for epoch in range(opt.nb_epochs):
   for i, data in enumerate(trainloader,0):
-    labels, inputs = data['label'],data['input']
+    labels, inputs = data['label'],data['image']
     outputs = model(inputs)
-    loss = criterion(outputs, targets)
+    loss = criterion(outputs, labels)
 
     # Backpropagation and optimizer step
     loss.backward()
@@ -60,4 +62,6 @@ for epoch in range(opt.nb_epochs):
   with torch.no_grad():
     for i, data in enumerate(testloader,0):
       outputs=model(inputs)
-      iou_metric(outputs,
+      metric = iou_metric(outputs,labels)
+    test_metric.append(metric)
+    print("Epoch",epoch,": Metric=",mean(test_metric))
