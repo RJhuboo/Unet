@@ -8,6 +8,7 @@ import Model
 import torch.nn.functional as F
 import torch.nn as nn
 from sklearn.model_selection import train_test_split
+import torch.optim as optim
 import dataloader
 
 parser = argparse.ArgumentParser()
