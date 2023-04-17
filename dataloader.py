@@ -21,7 +21,7 @@ class Datasets(Dataset):
         
         image = io.imread(os.path.join(self.image_dir,self.imagename[idx])) # Loading Image
         label = io.imread(os.path.join(self.label_dir,self.imagename[idx]))
-        if self.upsample == True or 'lr' in self.imgname:
+        if self.upsample == True:
             image = transform.rescale(image,2)
             image = (image>0.5)*255
             mask_name = os.path.join(self.mask_dir,str(self.labels.iloc[idx,0]).replace("_lr.tif",".bmp"))
