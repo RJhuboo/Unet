@@ -16,10 +16,10 @@ from torchvision.utils import save_image
 parser = argparse.ArgumentParser()
 parser.add_argument("--label_dir", default = "/gpfsstore/rech/tvs/uki75tv/Train_LR_segmented", help = "path to label csv file")
 parser.add_argument("--image_dir", default = "/gpfsstore/rech/tvs/uki75tv/Train_Label_trab_100", help = "path to image directory")
-parser.add_argument("--batch_size", default = 16, help = "Batch size")
-parser.add_argument("--nb_epochs", default = 100, help = "epochs")
-parser.add_argument("--nb_workers", default = 4, help = "worker")
-parser.add_argument("--lr",default=5e-3,help="learning rate")
+parser.add_argument("--batch_size", default = 16,type=int, help = "Batch size")
+parser.add_argument("--nb_epochs", default = 100,type=int, help = "epochs")
+parser.add_argument("--nb_workers", default = 4,type=int, help = "worker")
+parser.add_argument("--lr",default=5e-3,type=float,help="learning rate")
 opt = parser.parse_args()
 
 NB_DATA = 7100

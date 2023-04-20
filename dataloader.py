@@ -23,7 +23,6 @@ class Datasets(Dataset):
     def __getitem__(self, idx):
         if torch.is_tensor(idx):
             idx = idx.tolist()
-        print(self.imagename)
         image = io.imread(os.path.join(self.image_dir,self.imagename[idx])) # Loading Image
         label = io.imread(os.path.join(self.label_dir,self.imagename[idx]))
         if self.upsample == True:
